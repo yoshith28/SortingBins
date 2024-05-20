@@ -1,0 +1,97 @@
+#include<Servo.h>
+Servo motor;
+int pos = 0;
+void setup()
+{
+  motor.attach(8);
+  pinMode(2, INPUT);
+  pinMode(6,INPUT);
+}
+void loop()
+{
+  int i=0,n=0;
+  motor.write(0);
+  int sensorValue0 = analogRead(A0);
+  if (sensorValue0 < 100)
+{
+  if(digitalRead(6) !=HIGH)
+  {
+ motor.detach();
+
+ delay(50);
+
+ motor.attach(8);
+
+ motor.write(0);
+ delay(50);
+for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    motor.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15); 
+}
+
+ motor.detach();
+
+ /*delay(50);
+
+ motor.attach(8);
+
+ motor.write(0);
+ delay(0);
+for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    motor.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+ delay(50);
+ motor.write(0);
+ motor.detach(); */
+
+ }
+ else
+ {
+    motor.detach();
+
+ delay(50);
+
+ motor.attach(8);
+
+ motor.write(0);
+ delay(50);
+ for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    motor.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+
+ delay(50);
+
+ motor.detach();
+
+ delay(50);/*
+
+ motor.attach(8);
+
+ motor.write(0);
+ delay(0);
+for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    motor.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15); 
+}
+
+
+ delay(50);
+ motor.write(0);
+ motor.detach(); */
+
+ }
+
+}
+
+ else
+ {
+  motor.write(0);
+ }
+ 
+  motor.write(0);
+  
+}
